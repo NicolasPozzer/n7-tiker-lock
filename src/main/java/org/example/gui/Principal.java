@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Color;
 
 public class Principal extends JFrame {
     public JPanel panel;
@@ -25,6 +26,7 @@ public class Principal extends JFrame {
             listarBotones();
         });
     }
+    int cambio = 1;
 
     public void listarBotones(){
 
@@ -40,9 +42,17 @@ public class Principal extends JFrame {
 
         for (Tiker tiker : tikers) {
             JButton boton = new JButton(tiker.getNombre());
+            boton.setBackground(new Color(186, 186, 186));
 
             boton.addActionListener(e -> {
+
                 log("Presionaste: " + tiker.getNombre());
+
+
+                if (cambio == 1){
+                    boton.setBackground(new Color(132, 208, 55));
+                }
+                cambio = 1;
             });
 
             panel_con_botones.add(boton);
