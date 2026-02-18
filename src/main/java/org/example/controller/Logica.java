@@ -5,8 +5,8 @@ import javax.swing.*;
 public class Logica {
 
 
-    public void logica(String label1) {
-        System.out.println(label1);
+    public void cargarTickers() {
+
     }
 
 }

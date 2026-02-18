@@ -5,19 +5,23 @@ import org.example.controller.Logica;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Principal extends JFrame {
-    private JButton button1;
-    private JLabel label1;
     public JPanel panel;
+    public JPanel panel_con_botones;
 
     public Principal() {
-        button1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Logica logic = new Logica();
-                logic.logica(label1.getText());
-            }
-        });
+
+        List<String> nombres = List.of("Aceptar", "Cancelar", "Salir");
+
+        for (String nombre : nombres) {
+            panel_con_botones.add(new JButton(nombre));
+        }
     }
 }
+
+
+
+
