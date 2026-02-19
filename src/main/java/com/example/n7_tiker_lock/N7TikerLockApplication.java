@@ -25,11 +25,6 @@ public class N7TikerLockApplication {
 			Principal principal = new Principal(
 					context.getBean(TikerService.class)
 			);
-
-			principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			principal.pack();
-			principal.setLocationRelativeTo(null);
-			principal.setTitle("N7 Ticker Lock");
 			principal.setVisible(true);
 		});
 	}

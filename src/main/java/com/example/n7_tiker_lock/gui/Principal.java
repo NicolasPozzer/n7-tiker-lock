@@ -24,13 +24,32 @@ public class Principal extends JFrame {
     public Principal(TikerService tikerServ) {
         this.tikerServ = tikerServ;
 
+        setTitle("N7 Tiker Lock");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+        panel = new JPanel(new BorderLayout());
+        panel_con_botones = new JPanel(new FlowLayout());
+        textAreaLogs = new JTextArea();
+        btnReload = new JButton("Reload");
+
+        JScrollPane scrollLogs = new JScrollPane(textAreaLogs);
+
+        panel.add(btnReload, BorderLayout.NORTH);
+        panel.add(panel_con_botones, BorderLayout.CENTER);
+        panel.add(scrollLogs, BorderLayout.SOUTH);
+
         setContentPane(panel);
+
         listarBotones();
+
         btnReload.addActionListener(e -> {
             log("🔄 Recargando lista...");
             listarBotones();
         });
     }
+
 
     public void listarBotones(){
         List<Tiker> tikers = new ArrayList<>();
