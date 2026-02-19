@@ -46,25 +46,45 @@ public class Principal extends JFrame {
             for (Tiker tiker : tikers) {
                 JButton boton = new JButton(tiker.getSymbol());
 
+                // quitar barras :/: en el simbolo
+                String symbol = tiker.getSymbol();
+                int slashIndex = symbol.indexOf("/");
+
+                if (slashIndex != -1) {
+                    boton.setText(symbol.substring(0, slashIndex));
+                } else {
+                    boton.setText(symbol);
+                }
+                // fin quitar barras
+
                 // configs para BOTON, quitar contorno, focus, etc.
                 boton.setFocusPainted(false);
                 boton.setFocusable(false);
                 boton.setBorderPainted(false);
 
+                // Seter colores primeramente a la hora de cargar tikers, antes de interactuarlos
                 if (!tiker.getActivo()){
                     boton.setBackground(new Color(186, 186, 186));
+                }else{
+                    boton.setBackground(new Color(132, 208, 55));
                 }
 
                 boton.addActionListener(e -> {
-                    log("Presionaste: " + tiker.getSymbol());
-                    if (tiker.getActivo()){
-                        boton.setBackground(new Color(186, 186, 186));
-                        tiker.setActivo(false);
-                    }else{
-                        boton.setBackground(new Color(132, 208, 55));
-                        tiker.setActivo(true);
+                    try {
+                        log("Presionaste: " + tiker.getSymbol());
+                        if (tiker.getActivo()){
+                            boton.setBackground(new Color(186, 186, 186));
+                            tiker.setActivo(false);
+                        }else{
+                            boton.setBackground(new Color(132, 208, 55));
+                            tiker.setActivo(true);
+                        }
+                        // Comitear cambios
+                        this.tikerServ.saveTiker(tiker);
+                    }catch (Exception exception){
+                        log("Tiro una Exepcion al intentar cambiar estado del boton");
+                        log(exception.getMessage());
                     }
-                    // faltaria aqui comitear los cambios del estado en db
                 });
 
                 panel_con_botones.add(boton);
