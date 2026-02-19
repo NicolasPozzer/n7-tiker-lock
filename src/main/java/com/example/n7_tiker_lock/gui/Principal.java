@@ -4,13 +4,12 @@ import com.example.n7_tiker_lock.model.Tiker;
 import com.example.n7_tiker_lock.services.TikerService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-@Component
+
 public class Principal extends JFrame {
     public JPanel panel;
     public JPanel panel_con_botones;
@@ -19,10 +18,14 @@ public class Principal extends JFrame {
     private JPanel panel_logs;
     private JScrollPane scrollLogs;
 
-    @Autowired
-    private TikerService tikerServ;
 
-    public Principal() { // constructor vacio
+    private final TikerService tikerServ;
+
+    public Principal(TikerService tikerServ) {
+        this.tikerServ = tikerServ;
+
+        setContentPane(panel);
+        listarBotones();
     }
 
     @PostConstruct
@@ -53,7 +56,7 @@ public class Principal extends JFrame {
             for (Tiker tiker : tikers) {
                 JButton boton = new JButton(tiker.getSymbol());
 
-                // quitar barras :/: en el simbolo
+                // quitar barras '/' en el simbolo
                 String symbol = tiker.getSymbol();
                 int slashIndex = symbol.indexOf("/");
 
