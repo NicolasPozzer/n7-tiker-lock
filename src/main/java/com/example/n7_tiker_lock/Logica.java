@@ -1,4 +1,4 @@
-package org.example.controller;
+package com.example.n7_tiker_lock;
 
 import javax.swing.*;
 
