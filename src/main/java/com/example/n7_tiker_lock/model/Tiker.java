@@ -1,34 +1,32 @@
 package com.example.n7_tiker_lock.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "tikers_bloqueados") // mismo nombre de tabla
 public class Tiker {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // mejor si viene de DB
     private Integer id;
+
+    @Column(name = "symbol", unique = true, nullable = false, length = 100)
     private String symbol;
-    private Boolean activo;
+
+    @Column(name = "active")
+    private Integer active;
 
     public Tiker() {
     }
-    public Tiker(Integer id, String symbol, Boolean activo) {
-        this.id = id;
+
+    public Tiker(String symbol, Integer active) {
         this.symbol = symbol;
-        this.activo = activo;
+        this.active = active;
     }
 
+    // getters y setters
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getSymbol() {
@@ -39,12 +37,11 @@ public class Tiker {
         this.symbol = symbol;
     }
 
-    public Boolean getActivo() {
-        return activo;
+    public Integer getActive() {
+        return active;
     }
 
-    public void setActivo(Boolean activo) {
-        this.activo = activo;
+    public void setActive(Integer active) {
+        this.active = active;
     }
 }
-

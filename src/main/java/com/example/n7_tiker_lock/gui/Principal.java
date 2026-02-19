@@ -36,11 +36,18 @@ public class Principal extends JFrame {
     }
 
     public void listarBotones(){
+        List<Tiker> tikers = new ArrayList<>();
+        try {
+            panel_con_botones.removeAll(); // limpiar antes de recargar
+            tikers = tikerServ.getTikers();
 
-        panel_con_botones.removeAll(); // limpiar antes de recargar
-        List<Tiker> tikers = tikerServ.getTikers();
+            log("Cargando botones...");
+        }catch (Exception exception){
+            tikers = new ArrayList<>();
+            log("Tiro una Exepcion al intentar buscar tikers");
+            log(exception.getMessage());
+        }
 
-        log("Cargando botones...");
 
         if (!tikers.isEmpty()){
             for (Tiker tiker : tikers) {
@@ -63,7 +70,7 @@ public class Principal extends JFrame {
                 boton.setBorderPainted(false);
 
                 // Seter colores primeramente a la hora de cargar tikers, antes de interactuarlos
-                if (!tiker.getActivo()){
+                if (tiker.getActive() == 0){
                     boton.setBackground(new Color(186, 186, 186));
                 }else{
                     boton.setBackground(new Color(132, 208, 55));
@@ -72,16 +79,17 @@ public class Principal extends JFrame {
                 boton.addActionListener(e -> {
                     try {
                         log("Presionaste: " + tiker.getSymbol());
-                        if (tiker.getActivo()){
+                        if (tiker.getActive() == 1){
                             boton.setBackground(new Color(186, 186, 186));
-                            tiker.setActivo(false);
+                            tiker.setActive(0);
                         }else{
                             boton.setBackground(new Color(132, 208, 55));
-                            tiker.setActivo(true);
+                            tiker.setActive(1);
                         }
                         // Comitear cambios
                         this.tikerServ.saveTiker(tiker);
                     }catch (Exception exception){
+
                         log("Tiro una Exepcion al intentar cambiar estado del boton");
                         log(exception.getMessage());
                     }
