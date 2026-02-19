@@ -29,6 +29,7 @@ public class N7TikerLockApplication {
 			principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			principal.pack();
 			principal.setLocationRelativeTo(null);
+			principal.setTitle("N7 Ticker Lock");
 			principal.setVisible(true);
 		});
 	}

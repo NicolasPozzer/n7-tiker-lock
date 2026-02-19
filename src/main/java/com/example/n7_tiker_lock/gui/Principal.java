@@ -26,12 +26,6 @@ public class Principal extends JFrame {
 
         setContentPane(panel);
         listarBotones();
-    }
-
-    @PostConstruct
-    public void init() {
-        listarBotones();
-
         btnReload.addActionListener(e -> {
             log("🔄 Recargando lista...");
             listarBotones();

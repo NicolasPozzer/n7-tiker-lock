@@ -31,10 +31,11 @@
 	</properties>
 	<dependencies>
 
-		<!-- Spring JPA -->
+		<!-- Spring JPA, ESTO ES CLAVE PARA NO CORRER COMO SERVIDOR Y PARA APLICACIONES SWING -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId> <!-- AHORA Spring Boot corre en modo non-web application -->
 		</dependency>
 
 		<!-- MySQL -->
