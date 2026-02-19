@@ -77,19 +77,19 @@ public class Principal extends JFrame {
 
                 // Seter colores primeramente a la hora de cargar tikers, antes de interactuarlos
                 if (tiker.getActive() == 0) {
-                    boton.setBackground(new Color(186, 186, 186));
-                } else {
                     boton.setBackground(new Color(132, 208, 55));
+                } else {
+                    boton.setBackground(new Color(220, 88, 82));
                 }
 
                 boton.addActionListener(e -> {
                     try {
                         log("Presionaste: " + tiker.getSymbol());
                         if (tiker.getActive() == 1) {
-                            boton.setBackground(new Color(186, 186, 186));
+                            boton.setBackground(new Color(132, 208, 55));
                             tiker.setActive(0);
                         } else {
-                            boton.setBackground(new Color(132, 208, 55));
+                            boton.setBackground(new Color(220, 88, 82));
                             tiker.setActive(1);
                         }
                         // Comitear cambios
